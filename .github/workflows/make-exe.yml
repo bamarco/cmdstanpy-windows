@@ -1,0 +1,30 @@
+name: Compile python on windows
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache:'pip'
+      - run: pip install -r requirements.txt
+      - run: python answer
+      - run: pyinstaller --onefile answer
+      - uses: actions/upload-artifact@v3
+        with:
+          name: answer
+          path: answer.exe
+  test:
+    runs-on: windows-latest
+    needs: build
+    steps:
+    - uses: actions/download-artifact@v3
+      with:
+        name: answer
+    - run: ./answer.exe
