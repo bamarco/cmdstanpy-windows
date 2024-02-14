@@ -14,7 +14,7 @@ jobs:
           python-version: '3.11'
           cache: 'pip'
       - run: pip install -r requirements.txt
-      - run: python answer
+      - run: python answer.py
       - run: pyinstaller --onefile answer.py
       - uses: actions/upload-artifact@v3
         with:
