@@ -15,7 +15,7 @@ jobs:
           cache: 'pip'
       - run: pip install -r requirements.txt
       - run: python answer
-      - run: pyinstaller --onefile answer/__main__.py
+      - run: pyinstaller --onefile answer.py
       - uses: actions/upload-artifact@v3
         with:
           name: answer
