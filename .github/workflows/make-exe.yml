@@ -19,7 +19,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: answer
-          path: answer.exe
+          path: dist/answer.exe
   test:
     runs-on: windows-latest
     needs: build
