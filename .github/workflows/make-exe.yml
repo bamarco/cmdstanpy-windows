@@ -14,6 +14,7 @@ jobs:
           python-version: '3.11'
           cache: 'pip'
       - run: pip install -r requirements.txt
+      - run: install_cmdstan
       - run: python answer.py
       - run: python cmd.py
       - run: pyinstaller --onefile answer.py
