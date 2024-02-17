@@ -15,8 +15,8 @@ jobs:
           cache: 'pip'
       - run: pip install -r requirements.txt
       - run: install_cmdstan
-      - run: python cmd.spec
-      - run: pyinstaller --onefile cmd.py
+      - run: python cmd.py
+      - run: pyinstaller cmd.spec
       - uses: actions/upload-artifact@v3
         with:
           name: cmd
