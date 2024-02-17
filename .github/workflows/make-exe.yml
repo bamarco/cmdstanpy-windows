@@ -27,9 +27,5 @@ jobs:
     steps:
     - uses: actions/download-artifact@v3
       with:
-        name: answer
-    - run: ./answer.exe
-    - uses: actions/download-artifact@v3
-      with:
         name: cmd
     - run: ./cmd.exe
