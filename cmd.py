@@ -2,8 +2,18 @@
 import os
 from cmdstanpy import CmdStanModel
 
-stan_file = os.path.join('bernoulli.stan')
-data_file = os.path.join('bernoulli.data.json')
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
+stan_file = resource_path('bernoulli.stan')
+data_file = resource_path('bernoulli.data.json')
 
 # instantiate a model; compiles the Stan program by default
 model = CmdStanModel(stan_file=stan_file)
