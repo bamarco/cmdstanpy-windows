@@ -17,14 +17,8 @@ jobs:
            bash
           cache-environment: true
           post-cleanup: 'all'
-      - name: ls root
-        run: ls "/"
-        shell: bash -el {0}
-      - name: ls program x86
-        run: ls "/Program Files (x86)"
-        shell: bash -el {0}
-      - name: ls program oneAPI
-        run: ls "/Program Files (x86)/Intel/oneAPI/mkl"
+      - name: fine dll
+        run: find . -name "mkl_intel_thread.2.dll"
         shell: bash -el {0}
       - name: Run pyinstaller
         run: pyinstaller cmd.spec
