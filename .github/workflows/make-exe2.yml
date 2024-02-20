@@ -1,0 +1,40 @@
+name: Compile cmdstanpy on windows
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: mamba-org/setup-micromamba@v1
+        with:
+          micromamba-version: '1.3.1-0'
+          environment-file: environment.yml
+          init-shell: >-
+            bash
+          cache-environment: true
+          post-cleanup: 'all'
+      - name: Run custom command in micromamba environment
+        run: micromamba install -f requirements.txt
+        shell: micromamba-shell {0}
+      - name: Run custom command in micromamba environment
+        run: python cmd.py
+        shell: micromamba-shell {0}
+      - name: Run custom command in micromamba environment
+        run: pyinstaller cmd.spec
+        shell: micromamba-shell {0}
+      - uses: actions/upload-artifact@v3
+        with:
+          name: cmd
+          path: dist/cmd.exe
+
+  test:
+    runs-on: windows-latest
+    needs: build
+    steps:
+    - uses: actions/download-artifact@v3
+      with:
+        name: cmd
+    - run: ./cmd.exe
