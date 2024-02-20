@@ -17,8 +17,14 @@ jobs:
            bash
           cache-environment: true
           post-cleanup: 'all'
-      - name: Run cmd.py
-        run: ls "/Program Files (x86)/Intel/oneAPI/mkl/2022.1.0/redist/intel64"
+      - name: ls root
+        run: ls "/"
+        shell: bash -el {0}
+      - name: ls program x86
+        run: ls "/Program Files (x86)"
+        shell: bash -el {0}
+      - name: ls program oneAPI
+        run: ls "/Program Files (x86)/Intel/oneAPI/mkl"
         shell: bash -el {0}
       - name: Run pyinstaller
         run: pyinstaller cmd.spec
