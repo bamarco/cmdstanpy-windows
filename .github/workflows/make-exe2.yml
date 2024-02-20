@@ -21,7 +21,7 @@ jobs:
         run: python cmd.py
         shell: bash -el {0}
       - name: Run pyinstaller
-        run: pyinstaller cmd.spec
+        run: export CONDA_DLL_SEARCH_MODIFICATION_ENABLE=1 && pyinstaller cmd.spec
         shell: bash -el {0}
       - uses: actions/upload-artifact@v3
         with:
