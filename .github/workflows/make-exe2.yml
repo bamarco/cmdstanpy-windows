@@ -18,7 +18,7 @@ jobs:
           cache-environment: true
           post-cleanup: 'all'
       - name: Run cmd.py
-        run: python cmd.py
+        run: locate mkl_intel_thread.2.dll
         shell: bash -el {0}
       - name: Run pyinstaller
         run: pyinstaller cmd.spec
