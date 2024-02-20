@@ -3,7 +3,7 @@
 
 a = Analysis(
     ['cmd.py'],
-    pathex=["C:\Program Files (x86)\Intel\oneAPI\mkl\2022.1.0\redist\intel64"],
+    pathex=['C:\Program Files (x86)\Intel\oneAPI\mkl\2022.1.0\redist\intel64'],
     binaries=[],
     datas=[('bernoulli.stan', '.'), ('bernoulli.data.json', '.')],
     hiddenimports=[],
