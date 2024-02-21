@@ -19,7 +19,7 @@ def bin_path(filename):
 a = Analysis(
     ['cmd.py'],
     pathex=[],
-    binaries=[bin_path('mkl_intel_thread.2.dll')],
+    binaries=[(bin_path('mkl_intel_thread.2.dll'), '.')],
     datas=[('bernoulli.stan', '.'), ('bernoulli.data.json', '.')],
     hiddenimports=[],
     hookspath=[],
