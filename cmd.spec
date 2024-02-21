@@ -1,10 +1,22 @@
 # -*- mode: python ; coding: utf-8 -*-
 
+import os
+import json
+
+def env_path():
+    info = json.loads(os.system('micromamba info --json'))
+    path = info['env location']
+    return path
+
+def bin_path():
+    os.path.join(env_path(), 'Library', 'bin')
+
+# need C:\/Users/runneradmin/micromamba/envs/cmdstanpy/Library/bin/mkl_intel_thread.2.dll in windows
 
 a = Analysis(
     ['cmd.py'],
-    pathex=['C:\Program Files (x86)\Intel\oneAPI\mkl\2022.1.0\redist\intel64'],
-    binaries=[],
+    pathex=[bin_path()],
+    binaries=['mkl_intel_thread.2.dll'],
     datas=[('bernoulli.stan', '.'), ('bernoulli.data.json', '.')],
     hiddenimports=[],
     hookspath=[],
