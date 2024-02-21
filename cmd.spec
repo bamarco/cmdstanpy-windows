@@ -4,9 +4,12 @@ import os
 import json
 
 def env_path():
-    shellout = os.popen('micromamba info --json')
-    info = json.loads(shellout.read())
+    shellout = os.popen('micromamba info --json').read()
+    print(shellout)
+    info = json.loads(shellout)
+    print(info)
     path = info['env location']
+    print(path)
     return path
 
 def bin_path():
