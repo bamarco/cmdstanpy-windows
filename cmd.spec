@@ -4,7 +4,8 @@ import os
 import json
 
 def env_path():
-    info = json.loads(os.system('micromamba info --json'))
+    shellout = os.popen('micromamba info --json')
+    info = json.loads(shellout.read())
     path = info['env location']
     return path
 
