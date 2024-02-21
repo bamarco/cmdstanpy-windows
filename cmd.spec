@@ -19,7 +19,7 @@ def bin_path(filename):
 a = Analysis(
     ['cmd.py'],
     pathex=[],
-    binaries=[(bin_path('mkl_intel_thread.2.dll'), '.')],
+    binaries=[(bin_path('*'), '.')],
     datas=[('bernoulli.stan', '.'), ('bernoulli.data.json', '.')],
     hiddenimports=[],
     hookspath=[],
@@ -50,3 +50,4 @@ exe = EXE(
     codesign_identity=None,
     entitlements_file=None,
 )
+dd
