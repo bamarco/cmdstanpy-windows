@@ -2,6 +2,7 @@
 
 import os
 import json
+import subprocess
 
 def env_path():
     shellout = subprocess.run(['micromamba', '--json', 'info'], stdout=subprocess.PIPE).stdout
