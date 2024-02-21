@@ -11,15 +11,18 @@ def env_path():
     path = info['env location']
     return path
 
-def bin_path(filename):
-    return os.path.join(env_path(), 'Library', 'bin', filename)
-
 # need C:\/Users/runneradmin/micromamba/envs/cmdstanpy/Library/bin/mkl_intel_thread.2.dll in windows
+# So Provide Micromamba bin folder
+def mmamba_lib_bin_path():
+    return os.path.join(env_path(), 'Library', 'bin', '*')
+
+def mmamba_bin_path():
+    return os.path.join(env_path(), 'bin', '*')
 
 a = Analysis(
     ['cmd.py'],
     pathex=[],
-    binaries=[(bin_path('*'), '.')],
+    binaries=[(mmamba_lib_bin_path(), '.'), (mmamba_bin_path(), '.')],
     datas=[('bernoulli.stan', '.'), ('bernoulli.data.json', '.')],
     hiddenimports=[],
     hookspath=[],
