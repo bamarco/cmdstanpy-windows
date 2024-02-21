@@ -4,16 +4,14 @@ import os
 import json
 
 def env_path():
-    shellout = os.popen('micromamba info --json').read()
-    print(shellout)
-    info = json.loads(shellout)
-    print(info)
+    shellout = subprocess.run(['micromamba', '--json', 'info'], stdout=subprocess.PIPE).stdout
+    outstr = shellout.decode("utf-8")
+    info = json.loads(outstr)
     path = info['env location']
-    print(path)
     return path
 
 def bin_path():
-    os.path.join(env_path(), 'Library', 'bin')
+    return os.path.join(env_path(), 'Library', 'bin')
 
 # need C:\/Users/runneradmin/micromamba/envs/cmdstanpy/Library/bin/mkl_intel_thread.2.dll in windows
 
@@ -51,3 +49,5 @@ exe = EXE(
     codesign_identity=None,
     entitlements_file=None,
 )
+
+bin_path()
