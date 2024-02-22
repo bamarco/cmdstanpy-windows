@@ -19,10 +19,13 @@ def mmamba_lib_bin_path():
 def mmamba_bin_path():
     return os.path.join(env_path(), 'bin', '*')
 
+def cmdstan_bin_path():
+    return os.path.join(env_path(), 'cmdstan', 'bin')
+
 a = Analysis(
     ['cmd.py'],
     pathex=[],
-    binaries=[(mmamba_lib_bin_path(), '.'), (mmamba_bin_path(), '.')],
+    binaries=[(mmamba_lib_bin_path(), '.'), (mmamba_bin_path(), '.'), (cmdstan_bin_path, '.')],
     datas=[('bernoulli.stan', '.'), ('bernoulli.data.json', '.')],
     hiddenimports=[],
     hookspath=[],
