@@ -3,3 +3,4 @@ pandas
 pyinstaller
 cmdstanpy
 cython
+stanio

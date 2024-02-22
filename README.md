@@ -1,4 +1,4 @@
 # Cmdstanpy on Windows
 
-- TODO: github workflow does not currently bundle cmdstan into the exe
-  - possibly works when using pyinstaller from a conda or mamba environment
+- github workflow does not currently bundle cmdstan into the exe
+- nix python support for windows is experimental enough so as to be non-existent

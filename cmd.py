@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import os
-from cmdstanpy import CmdStanModel
+# from cmdstanpy import CmdStanModel
 
 def resource_path(relative_path):
     """ Get absolute path to resource, works for dev and for PyInstaller """
@@ -11,15 +11,15 @@ def resource_path(relative_path):
         base_path = os.path.abspath(".")
 
     return os.path.join(base_path, relative_path)
-
-stan_file = resource_path('bernoulli.stan')
-data_file = resource_path('bernoulli.data.json')
-
-# instantiate a model; compiles the Stan program by default
-model = CmdStanModel(stan_file=stan_file)
-
-# obtain a posterior sample from the model conditioned on the data
-fit = model.sample(chains=4, data=data_file)
-
 # summarize the results (wraps CmdStan `bin/stansummary`):
-fit.summary()
+if __name__ == '__main__':
+    stan_file = resource_path('bernoulli.stan')
+    data_file = resource_path('bernoulli.data.json')
+
+    # instantiate a model; compiles the Stan program by default
+    model = CmdStanModel(stan_file=stan_file)
+
+    # obtain a posterior sample from the model conditioned on the data
+    fit = model.sample(chains=4, data=data_file)
+
+    fit.summary()
