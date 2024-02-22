@@ -20,7 +20,7 @@ def mmamba_bin_path():
     return os.path.join(env_path(), 'bin', '*')
 
 def cmdstan_bin_path():
-    return os.path.join(env_path(), 'cmdstan', 'bin')
+    return os.path.join(env_path(), 'cmdstan', 'bin', '*')
 
 a = Analysis(
     ['cmd.py'],
