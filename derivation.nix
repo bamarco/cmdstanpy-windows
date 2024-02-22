@@ -6,7 +6,7 @@ buildPythonApplication {
   version = "0.1";
 
   propagatedBuildInputs = [
-#    cmdstanpy
+    cmdstanpy
   ];
 
   src = ./.;
