@@ -25,7 +25,7 @@ def cmdstan_bin_path():
 a = Analysis(
     ['cmd.py'],
     pathex=[],
-    binaries=[(mmamba_lib_bin_path(), '.'), (mmamba_bin_path(), '.'), (cmdstan_bin_path, '.')],
+    binaries=[(mmamba_lib_bin_path(), '.'), (mmamba_bin_path(), '.'), (cmdstan_bin_path(), '.')],
     datas=[('bernoulli.stan', '.'), ('bernoulli.data.json', '.')],
     hiddenimports=[],
     hookspath=[],
