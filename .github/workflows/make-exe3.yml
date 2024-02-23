@@ -18,7 +18,8 @@ jobs:
           cache-environment: true
           post-cleanup: 'all'
       - name: Run pyinstaller
-        run: pyinstaller -F --add-data bernoulli.stan:. --add-data bernoulli.data.json:. --add-binary $CMDSTAN:./cmdstan  --runtime-hook env_patch.py cmd.py
+        run: pyinstaller cmd.spec
+#        run: pyinstaller -F --add-data bernoulli.stan:. --add-data bernoulli.data.json:. --add-binary $CMDSTAN:./cmdstan  --runtime-hook env_patch.py cmd.py
         shell: bash -el {0}
       - uses: actions/upload-artifact@v3
         with:
