@@ -1,7 +1,8 @@
 # -*- mode: python ; coding: utf-8 -*-
 
-import subprocess
 import os
+import json
+import subprocess
 
 def mmamba_path():
     shellout = subprocess.run(['micromamba', '--json', 'info'], stdout=subprocess.PIPE).stdout
