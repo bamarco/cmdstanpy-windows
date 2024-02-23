@@ -1,36 +1,15 @@
 # -*- mode: python ; coding: utf-8 -*-
 
-import os
-import json
-import subprocess
-
-def env_path():
-    shellout = subprocess.run(['micromamba', '--json', 'info'], stdout=subprocess.PIPE).stdout
-    outstr = shellout.decode("utf-8")
-    info = json.loads(outstr)
-    path = info['env location']
-    return path
-
-# need C:\/Users/runneradmin/micromamba/envs/cmdstanpy/Library/bin/mkl_intel_thread.2.dll in windows
-# So Provide Micromamba bin folder
-def mmamba_lib_bin_path():
-    return os.path.join(env_path(), 'Library', 'bin', '*')
-
-def mmamba_bin_path():
-    return os.path.join(env_path(), 'bin', '*')
-
-def cmdstan_bin_path():
-    return os.path.join(env_path(), 'bin', 'cmdstan', 'bin', '*')
 
 a = Analysis(
     ['cmd.py'],
     pathex=[],
-    binaries=[(mmamba_lib_bin_path(), '.'), (mmamba_bin_path(), '.'), (cmdstan_bin_path(), '.')],
+    binaries=[('/home/monkey/micromamba/envs/cmdstanpy/bin/cmdstan', './cmdstan')],
     datas=[('bernoulli.stan', '.'), ('bernoulli.data.json', '.')],
-    hiddenimports=['cython'],
+    hiddenimports=[],
     hookspath=[],
     hooksconfig={},
-    runtime_hooks=[],
+    runtime_hooks=['env_patch.py'],
     excludes=[],
     noarchive=False,
 )
