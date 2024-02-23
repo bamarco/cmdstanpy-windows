@@ -1,10 +1,25 @@
 # -*- mode: python ; coding: utf-8 -*-
 
+import subprocess
+import os
+
+def mmamba_path():
+    shellout = subprocess.run(['micromamba', '--json', 'info'], stdout=subprocess.PIPE).stdout
+    outstr = shellout.decode("utf-8")
+    info = json.loads(outstr)
+    path = info['env location']
+    return path
+
+def mmamba_lib_bin_path():
+    return os.path.join(mmamba_path(), 'Library', 'bin')
+
+def mmamba_bin_path():
+    return os.path.join(mmamba_path(), 'bin')
 
 a = Analysis(
     ['cmd.py'],
     pathex=[],
-    binaries=[('/home/monkey/micromamba/envs/cmdstanpy/bin/cmdstan', './cmdstan')],
+    binaries=[(mmamba_lib_bin_path(), '.'), (mmamba_bin_path(), '.'), (os.path.join(os.environ['CMDSTAN']), './cmdstan')],
     datas=[('bernoulli.stan', '.'), ('bernoulli.data.json', '.')],
     hiddenimports=[],
     hookspath=[],
